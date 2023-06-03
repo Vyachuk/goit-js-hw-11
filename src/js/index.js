@@ -1,6 +1,6 @@
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { fetchApi } from './fetchApi';
-import onItemHtml from './photoCard';
+import {onItemHtml} from './photoCard';
 
 const ref = {
     gallery: document.querySelector('.gallery'),

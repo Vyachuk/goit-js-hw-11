@@ -1,4 +1,4 @@
-export default onItemHtml = item => {
+export const onItemHtml = item => {
     return `
         <div class="photo-card">
             <img height=170 src="${item.webformatURL}" alt="${item.tags}" loading="lazy" />
