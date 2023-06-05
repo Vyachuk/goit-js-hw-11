@@ -71,3 +71,40 @@ img{
 .is-hidden{
     display: none;
 }
+
+.search-form{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.form__field {
+    border: 0;
+    border-bottom: 2px solid gray;
+    outline: 0;
+    color: black;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+.form__field::placeholder {
+    font-size: 14px;
+    color: black;
+}
+
+.form__field:placeholder-shown~.form__label {
+    cursor: text;
+    top: 20px;
+}
+
+.form__button {
+    background: transparent;
+    padding: 0 25px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.form__button:hover{
+    border: 2px solid rgb(180, 180, 180);
+}
