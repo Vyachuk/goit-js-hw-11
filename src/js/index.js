@@ -15,8 +15,9 @@ const ref = {
 
 ref.form.addEventListener('submit', async e => {
     e.preventDefault();
-    searchParam.name = ref.form.elements.searchQuery.value;
+    searchParam.name = ref.form.elements.searchQuery.value.trim();
     searchParam.page = 1;
+    console.log(searchParam.name);
     if (!searchParam.name) {
         Notify.failure('Sorry, there are no searching text.');
         return;
