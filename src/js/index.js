@@ -20,7 +20,6 @@ ref.form.addEventListener('submit', e => {
         Notify.failure('Sorry, there are no searching text.');
         return;
     }
-    fetchApiPage = 1;
     fetchApi(searchParam)
         .then(data => {
         if (data.hits.length === 0) {
