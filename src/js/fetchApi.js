@@ -14,7 +14,7 @@ export async function fetchApi({name, page }) {
     });
     try {
         const response = await axios.get(`https://pixabay.com/api/?${searchParams}`)
-        return response.data;
+        return response;
     } catch (error) {
         console.log(error);
     }

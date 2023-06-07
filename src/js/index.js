@@ -13,35 +13,38 @@ const ref = {
     loadMoreBtn: document.querySelector('.load-more'),
 }
 
-ref.form.addEventListener('submit', e => {
+ref.form.addEventListener('submit', async e => {
     e.preventDefault();
     searchParam.name = ref.form.elements.searchQuery.value;
     if (!searchParam.name) {
         Notify.failure('Sorry, there are no searching text.');
         return;
     }
-    fetchApi(searchParam)
-        .then(data => {
+    try {
+        const { data } = await fetchApi(searchParam);
+
         if (data.hits.length === 0) {
             throw new Error()
         }
+
         Notify.info(`Hooray! We found ${data.totalHits} images`)
         const dataArr = data.hits.map(item => {
             return onItemHtml(item);
         }).join('')
         ref.gallery.innerHTML = dataArr;
-        ref.loadMoreBtn.classList.toggle('is-hidden')
-    })
-    .catch(() => {
+        if (searchParam.page * 40 < data.totalHits) {
+            ref.loadMoreBtn.classList.toggle('is-hidden');
+        }
+    } catch (error) {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-    })
+    }
 })
 
 
-ref.loadMoreBtn.addEventListener('click', () => {
+ref.loadMoreBtn.addEventListener('click', async e => {
     searchParam.page += 1;
-    fetchApi(searchParam)
-        .then(data => {
+    try {
+        const { data } = await fetchApi(searchParam);
         if (searchParam.page * 40 > data.totalHits) {
             ref.loadMoreBtn.classList.toggle('is-hidden');
             Notify.info("We're sorry, but you've reached the end of search results.")
@@ -50,9 +53,10 @@ ref.loadMoreBtn.addEventListener('click', () => {
             return onItemHtml(item);
         }).join('')
         ref.gallery.insertAdjacentHTML('beforeend', dataArr);
-        }).catch(e => {
-            console.log(e);
-        })
+    } 
+    catch (error) {
+        console.log(e);
+    }
 })
 
 
