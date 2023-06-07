@@ -16,11 +16,13 @@ img{
 .info{
     display: flex;
     font-size: 14px;
-    gap: 1em;
+    justify-content: space-around;
     text-align: center;
 }
 .info-item{
     line-height: 1.6;
+    max-width: 24%;
+    font-weight: 700;
 }
 
 
