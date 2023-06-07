@@ -33,7 +33,7 @@ ref.form.addEventListener('submit', async e => {
         }).join('')
         ref.gallery.innerHTML = dataArr;
         if (searchParam.page * 40 < data.totalHits) {
-            ref.loadMoreBtn.classList.toggle('is-hidden');
+            ref.loadMoreBtn.classList.remove('is-hidden');
         }
     } catch (error) {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
@@ -46,7 +46,7 @@ ref.loadMoreBtn.addEventListener('click', async e => {
     try {
         const { data } = await fetchApi(searchParam);
         if (searchParam.page * 40 > data.totalHits) {
-            ref.loadMoreBtn.classList.toggle('is-hidden');
+            ref.loadMoreBtn.classList.add('is-hidden');
             Notify.info("We're sorry, but you've reached the end of search results.")
         }
         const dataArr = data.hits.map(item => {
