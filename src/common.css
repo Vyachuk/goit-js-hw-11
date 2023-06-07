@@ -16,6 +16,7 @@ img{
 .info{
     display: flex;
     font-size: 14px;
+    gap: 1em;
     text-align: center;
 }
 .info-item{
